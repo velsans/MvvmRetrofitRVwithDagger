@@ -8,29 +8,29 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import  com.vel.mvvmretrofitrvwithdagger.ui.main.MainViewModel;
 
 import com.vel.mvvmretrofitrvwithdagger.R;
+import com.vel.mvvmretrofitrvwithdagger.ui.viewmodel.NewsViewModel;
 
-public class MainFragment extends Fragment {
+public class NewsFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    private NewsViewModel mViewModel;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static NewsFragment newInstance() {
+        return new NewsFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, container, false);
+        return inflater.inflate(R.layout.news_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
         // TODO: Use the ViewModel
     }
 
