@@ -14,7 +14,7 @@ public class DatabaseInitializer {
         return db.newsDao().insert(news);
     }
 
-    public static List<News> getAllStudent(final AppDatabase db)
+    public static List<News> getAll News(final AppDatabase db)
     {
         return db.newsDao().getAll();
     }

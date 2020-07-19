@@ -1,11 +1,11 @@
 package com.vel.mvvmretrofitrvwithdagger.ui.model;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.PrimaryKey;
 
-@Entity(tableName = "student", indices = {@Index(value = "news_id", unique = true)} )
+@Entity(tableName = "news", indices = {@Index(value = "NewsID", unique = true)} )
 public class News {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "Roll_No")

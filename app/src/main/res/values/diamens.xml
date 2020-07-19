@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="newsImagewidth">125dp</dimen>
+    <dimen name="descriptionewidth">275dp</dimen>
+</resources>

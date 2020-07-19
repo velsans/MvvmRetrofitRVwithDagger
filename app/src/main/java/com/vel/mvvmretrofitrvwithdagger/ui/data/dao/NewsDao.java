@@ -1,10 +1,10 @@
 package com.vel.mvvmretrofitrvwithdagger.ui.data.dao;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
 
 import com.vel.mvvmretrofitrvwithdagger.ui.model.News;
 
@@ -19,11 +19,11 @@ public interface NewsDao {
     int count();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    long insert(News student);
+    long insert(News  news);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    long[] insertAll(List<News> students);
+    long[] insertAll(List<News>  newss);
 
     @Delete
-    void delete(News student);
+    void delete(News  news);
 }
