@@ -36,26 +36,29 @@
                 android:id="@+id/newsRecylcerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
-
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                app:adapter="@{newsModel.adapter}"
+                app:data="@{newsModel.newsList}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:visibility="@{newsModel.recycler}"
+                tools:listitem="@layout/item_news" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
         <FrameLayout
             android:id="@+id/rootLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:onClick="@{newsModel::onClickFabLoad}"
-            android:src="@drawable/ic_baseline_refresh_24">
-           </com.google.android.material.floatingactionbutton.FloatingActionButton>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:onClick="@{newsModel::onClickFabLoad}"
+                android:src="@drawable/ic_baseline_refresh_24"></com.google.android.material.floatingactionbutton.FloatingActionButton>
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
