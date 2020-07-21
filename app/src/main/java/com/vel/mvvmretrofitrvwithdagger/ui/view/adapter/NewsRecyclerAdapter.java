@@ -34,9 +34,13 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         return new NewsViewHolder(itenBinding);
     }
 
+    public News getNews(int position) {
+        return NewsList.get(position);
+    }
+
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
-        holder.bindStudent(NewsList.get(position));
+        holder.bindNews(NewsList.get(position));
     }
 
     @Override
@@ -59,11 +63,11 @@ public class NewsRecyclerAdapter extends RecyclerView.Adapter<NewsRecyclerAdapte
         }
 
 
-        void bindStudent(News news) {
+        void bindNews(News news) {
             if (binding.getNewsitemModel() == null) {
                 binding.setNewsitemModel(new ItemNewsViewModel(itemView.getContext(), news));
             } else {
-                binding.getNewsitemModel().setStudent(news);
+                binding.getNewsitemModel().setNews(news);
             }
         }
     }

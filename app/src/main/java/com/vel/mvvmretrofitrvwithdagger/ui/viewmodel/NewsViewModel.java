@@ -58,10 +58,10 @@ public class NewsViewModel extends BaseObservable {
     }
 
     public void reloadData() {
-        this.changeStudentDataSet(DatabaseInitializer.getAllNews(AppDatabase.getAppDatabase(context)));
+        this.changeNewsDataSet(DatabaseInitializer.getAllNews(AppDatabase.getAppDatabase(context)));
     }
 
-    private void changeStudentDataSet(List<News> newsList) {
+    private void changeNewsDataSet(List<News> newsList) {
         this.newsList.clear();
         this.newsList.addAll(newsList);
 

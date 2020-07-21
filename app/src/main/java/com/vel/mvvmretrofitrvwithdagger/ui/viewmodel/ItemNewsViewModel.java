@@ -48,7 +48,7 @@ public class ItemNewsViewModel extends BaseObservable
         }
     }
 
-    public void setStudent(News news)
+    public void setNews(News news)
     {
         this.news = news;
         notifyChange();
