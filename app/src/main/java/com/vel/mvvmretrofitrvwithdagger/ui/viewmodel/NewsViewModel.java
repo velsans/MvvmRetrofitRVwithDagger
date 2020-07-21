@@ -37,6 +37,7 @@ public class NewsViewModel extends BaseObservable {
     private List<News> newsList;
     private News news;
     private NewsRecyclerAdapter adapter;
+    private int UniqueID = 0;
 
     NewsViewModel(Context context) {
         this.context = context;
@@ -95,7 +96,9 @@ public class NewsViewModel extends BaseObservable {
             }
         });
         //isLoading.set(true);
-        news=new News(5,"News19","fake","https://en.wikipedia.org/wiki/Naam_Tamilar_Katchi#/media/File:NTKLogo.jpg");
+        UniqueID = UniqueID + 1;
+        //news = new News(UniqueID, "News14", "fake", "https://androidwave.com/wp-content/uploads/2019/01/profile_pic.jpg");
+        news = new News(UniqueID, "News14", "fake", "https://randomuser.me/api/portraits/thumb/women/68.jpg");
         if (DatabaseInitializer.insertNews(AppDatabase.getAppDatabase(context), news) != -1) {
             Toast.makeText(view.getContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
             reloadData();
@@ -104,6 +107,4 @@ public class NewsViewModel extends BaseObservable {
         }
         Toast.makeText(view.getContext(), "Failed to Insert", Toast.LENGTH_SHORT).show();
     }
-
-
 }

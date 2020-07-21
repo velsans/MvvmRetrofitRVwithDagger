@@ -41,7 +41,11 @@ public class ItemNewsViewModel extends BaseObservable
     @BindingAdapter("imageUrl")
     public static void setImageUrl(ImageView imageView, String url)
     {
-        Glide.with(imageView.getContext()).load(url).into(imageView);
+        if (!url.isEmpty()) {
+            Glide.with(imageView.getContext())
+                    .load(url)
+                    .into(imageView);
+        }
     }
 
     public void setStudent(News news)

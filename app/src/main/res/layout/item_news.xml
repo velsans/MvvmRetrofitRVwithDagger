@@ -10,62 +10,56 @@
             type="com.vel.mvvmretrofitrvwithdagger.ui.viewmodel.ItemNewsViewModel" />
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/news"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="5dp"
+        android:background="@color/lightblack"
         tools:ignore="MissingConstraints">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="10dp" />
-
-        <ImageView
-            android:id="@+id/newsurl"
-            android:layout_width="@dimen/newsImagewidth"
-            android:layout_height="0dp"
-            app:layout_constraintStart_toEndOf="@+id/description"
-            tools:imageUrl="@{newsitemModel.newsImageurl}"
-            tools:layout_editor_absoluteY="50dp"
-            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@{newsitemModel.title}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintBottom_toTopOf="@+id/newsurl"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
+            style="@style/titletextView_Style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="282dp" />
+            android:text="@{newsitemModel.title}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="4dp" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="decs_text_view,right_text_view" />
 
         <TextView
-            android:id="@+id/description"
-            android:layout_width="@dimen/descriptionewidth"
-            android:layout_height="0dp"
+            android:id="@+id/decs_text_view"
+            style="@style/titletextView_Style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
             android:text="@{newsitemModel.description}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:layout_editor_absoluteX="7dp" />
+            app:layout_constraintEnd_toStartOf="@+id/right_text_view"
+            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <ImageView
+            android:id="@+id/right_text_view"
+            android:layout_width="@dimen/newsImagewidth"
+            android:layout_height="@dimen/newsImagewidth"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/decs_text_view"
+            app:layout_constraintTop_toTopOf="@+id/decs_text_view"
+            tools:imageUrl="@{newsitemModel.newsImageurl}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
