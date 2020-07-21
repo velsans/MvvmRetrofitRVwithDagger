@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ApiInterface {
 
-    @GET(ServiceURL.ApplicationUpdateMethod + "/GetApplicationUpdateUrl")
+    @GET(ServiceURL.securityControllorName + "/GetApplicationUpdateUrl")
     Call<News> GetAllNews();
 }
