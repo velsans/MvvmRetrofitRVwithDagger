@@ -3,9 +3,9 @@ package com.vel.mvvmretrofitrvwithdagger.ui.data.api;
 public class ServiceURL {
 
     /*URL's*/
-    public final static String LOCAL_URL = "";
-    public final static String LIVE_URL = "";
-    public final static String Language_URL = "";
+    //https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json
+    public final static String LOCAL_URL = "https://dl.dropboxusercontent.com";
+    public final static String LIVE_URL = "https://dl.dropboxusercontent.com";
 
     public final static String securityControllorName = "security";
     /*Final Url*/

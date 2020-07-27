@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.ObservableBoolean;
@@ -17,8 +18,12 @@ import com.vel.mvvmretrofitrvwithdagger.ui.data.api.ApiClient;
 import com.vel.mvvmretrofitrvwithdagger.ui.data.api.ApiInterface;
 import com.vel.mvvmretrofitrvwithdagger.ui.data.db.AppDatabase;
 import com.vel.mvvmretrofitrvwithdagger.ui.model.News;
+import com.vel.mvvmretrofitrvwithdagger.ui.model.NewsDetails;
+import com.vel.mvvmretrofitrvwithdagger.ui.model.NewsInput;
+import com.vel.mvvmretrofitrvwithdagger.ui.view.NewsActivity;
 import com.vel.mvvmretrofitrvwithdagger.ui.view.adapter.NewsRecyclerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -43,7 +48,6 @@ public class NewsViewModel extends BaseObservable {
         this.context = context;
         this.progress = new ObservableInt(View.VISIBLE);
         this.recycler = new ObservableInt(View.GONE);
-        //this.isLoading=new ObservableBoolean(true);
     }
 
     public NewsViewModel(Context context, News news) {
@@ -84,27 +88,42 @@ public class NewsViewModel extends BaseObservable {
 
     public void onClickFabLoad(View view) {
         ClientInfoApi = ApiClient.getApiInterface();
-        ClientInfoApi.GetAllNews().enqueue(new Callback<News>() {
+        ClientInfoApi.GetAllNews().enqueue(new Callback<NewsInput>() {
             @Override
-            public void onResponse(Call<News> call, Response<News> response) {
-
+            public void onResponse(Call<NewsInput> call, Response<NewsInput> response) {
+                if (response.body() != null) {
+                    InsertRows(response.body().getRows(), view,response.body().getTitle());
+                }
             }
 
             @Override
-            public void onFailure(Call<News> call, Throwable t) {
-
+            public void onFailure(Call<NewsInput> call, Throwable t) {
+                Toast.makeText(view.getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        //isLoading.set(true);
-        UniqueID = UniqueID + 1;
-        //news = new News(UniqueID, "News14", "fake", "https://androidwave.com/wp-content/uploads/2019/01/profile_pic.jpg");
-        news = new News(UniqueID, "News14", "fake", "https://randomuser.me/api/portraits/thumb/women/68.jpg");
-        if (DatabaseInitializer.insertNews(AppDatabase.getAppDatabase(context), news) != -1) {
-            Toast.makeText(view.getContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void InsertRows(List<NewsDetails> newsInputDetails, View view,String Title) {
+        try {
+            // Action Bar Title
+            ((AppCompatActivity) new NewsActivity()).getSupportActionBar().setTitle(Title);
+            // Get table last row news id
+            UniqueID = DatabaseInitializer.getCount(AppDatabase.getAppDatabase(context));
+            // Insert All
+            //DatabaseInitializer.in(AppDatabase.getAppDatabase(context), newsInputDetails);
+            //Insert one by one
+            // according to your json i will insert one by one cause i am not allowing duplications
+            for (NewsDetails newsDetails : newsInputDetails) {
+                UniqueID = UniqueID + 1;
+                news = new News(UniqueID, newsDetails.getTitle(), newsDetails.getDescription(), newsDetails.getImageHref());
+                DatabaseInitializer.insertNews(AppDatabase.getAppDatabase(context), news);
+            }
+            Toast.makeText(view.getContext(), "Inserted Sucessfully", Toast.LENGTH_SHORT).show();
             reloadData();
-            //isLoading.set(false);
-            return;
+            UniqueID=0;
+        } catch (Exception ex) {
+            Toast.makeText(view.getContext(), ex.toString(), Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(view.getContext(), "Failed to Insert", Toast.LENGTH_SHORT).show();
     }
 }

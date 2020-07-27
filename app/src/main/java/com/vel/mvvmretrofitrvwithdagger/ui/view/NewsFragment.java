@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.vel.mvvmretrofitrvwithdagger.R;
@@ -52,7 +50,6 @@ public class NewsFragment extends Fragment implements LifecycleOwner {
                 this.mViewModel.reloadData();
             }, 1000);
         });
-
         return news_rootview;
     }
 
