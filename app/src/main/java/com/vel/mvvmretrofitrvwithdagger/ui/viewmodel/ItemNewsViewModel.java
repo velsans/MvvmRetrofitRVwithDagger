@@ -1,6 +1,7 @@
 package com.vel.mvvmretrofitrvwithdagger.ui.viewmodel;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 import androidx.databinding.BaseObservable;
@@ -8,6 +9,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.vel.mvvmretrofitrvwithdagger.R;
 import com.vel.mvvmretrofitrvwithdagger.ui.model.News;
 
@@ -40,7 +42,7 @@ public class ItemNewsViewModel extends BaseObservable {
         if (!isNullOrEmpty(url)) {
             //Glide.with(imageView.getContext()).load(url).into(imageView);
             Glide.with(imageView.getContext()).load(url).apply(new RequestOptions()
-                    .placeholder(R.mipmap.ic_launcher)
+                    .placeholder(R.mipmap.face)
                     .fitCenter()).into(imageView);
         }
     }
